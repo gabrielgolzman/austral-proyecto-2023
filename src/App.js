@@ -1,6 +1,7 @@
 import "./App.css";
 
 import Books from "./components/books/Books";
+import Products from "./components/products/Products";
 
 const App = () => {
   const books = [
@@ -29,11 +30,13 @@ const App = () => {
       pageCount: 352,
     },
   ];
+  const products = ["table", "couch", "chair1", "chair2", "couch2"];
   return (
     <div>
       <h1>Books Champion App!</h1>
       <p>¡Quiero leer libros!</p>
       <Books books={books} />
+      <Products products={products} />
     </div>
   );
 };
