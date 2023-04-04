@@ -1,14 +1,16 @@
-import DateRead from "../dateRead/DateRead";
 import "./BookItem.css";
+
+import BookCard from "../bookCard/BookCard";
+import DateRead from "../dateRead/DateRead";
 
 const BookItem = ({ title, author, dateRead, pageCount }) => {
   return (
-    <div className="book-item-container">
+    <BookCard>
       <h2>{title}</h2>
       <h3>{author}</h3>
       <DateRead dateRead={dateRead} />
       <p>{pageCount} páginas</p>
-    </div>
+    </BookCard>
   );
 };
 
