@@ -1,6 +1,7 @@
 import "./App.css";
 
 import Books from "./components/books/Books";
+import Persons from "./components/persons/Persons";
 
 const App = () => {
   const books = [
@@ -29,11 +30,13 @@ const App = () => {
       pageCount: 352,
     },
   ];
+  const names = ["parker", "Simmons", "Lewis", "Poe"];
   return (
     <div>
       <h1>Books Champion App!</h1>
       <p>¡Quiero leer libros!</p>
       <Books books={books} />
+      <Persons personsNames={names} />
     </div>
   );
 };
