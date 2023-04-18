@@ -1,6 +1,6 @@
 import "./NewBook.css";
 
-import BookForm from "./BookForm";
+import BookForm from "../BookForm/BookForm";
 
 const NewBook = () => {
   return (

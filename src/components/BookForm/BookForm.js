@@ -1,4 +1,4 @@
-import React from "react";
+import "./BookForm.css";
 
 const BookForm = () => {
   return (
@@ -27,7 +27,6 @@ const BookForm = () => {
         </div>
       </div>
       <div className="new-book-actions">
-        <button>Cancelar</button>
         <button>Agregar lectura</button>
       </div>
     </form>

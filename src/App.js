@@ -1,5 +1,6 @@
 import "./App.css";
 
+import NewBook from "./components/NewBook/NewBook";
 import Books from "./components/books/Books";
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
     <div>
       <h1>Books Champion App!</h1>
       <p>¡Quiero leer libros!</p>
+      <NewBook />
       <Books books={books} />
     </div>
   );
