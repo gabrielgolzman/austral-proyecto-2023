@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./BookForm.css";
 
-const BookForm = () => {
+const BookForm = ({ onBookAdded }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [dateRead, setDateRead] = useState("");
@@ -26,12 +26,13 @@ const BookForm = () => {
   const addBookHandler = (event) => {
     event.preventDefault();
     const newBook = {
+      id: Math.random(),
       title,
       author,
-      dateRead,
+      dateRead: new Date(dateRead),
       pageCount,
     };
-    console.log(newBook);
+    onBookAdded(newBook);
   };
 
   return (

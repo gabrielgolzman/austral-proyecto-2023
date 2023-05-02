@@ -2,10 +2,10 @@ import "./NewBook.css";
 
 import BookForm from "../BookForm/BookForm";
 
-const NewBook = () => {
+const NewBook = ({onBookAdded}) => {
   return (
     <div className="new-book">
-      <BookForm />
+      <BookForm onBookAdded={onBookAdded} />
     </div>
   );
 };
