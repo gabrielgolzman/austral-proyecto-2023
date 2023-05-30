@@ -5,6 +5,8 @@ import NewBook from "./components/NewBook/NewBook";
 import Books from "./components/books/Books";
 import BooksFilter from "./components/bookFilter/BookFilter";
 
+import Login from "./components/login/Login";
+
 const BOOKS = [
   {
     id: 1,
@@ -38,25 +40,24 @@ const BOOKS = [
 
 const App = () => {
   const [books, setBooks] = useState(BOOKS);
-  const[yearFiltered, setYearFiltered] = useState("2023");
+  const [yearFiltered, setYearFiltered] = useState("2023");
 
   const addBookHandler = (book) => {
     setBooks([book, ...books]);
   };
 
-  const handleFilterChange = (year) =>{
+  const handleFilterChange = (year) => {
     setYearFiltered(year);
-  }
-
-
+  };
 
   return (
     <div>
-      <h1>Books Champion App!</h1>
+      {/* <h1>Books Champion App!</h1>
       <h3>¡Quiero leer libros!</h3>
       <NewBook onBookAdded={addBookHandler} />
       <BooksFilter yearFiltered={yearFiltered} onYearChange={handleFilterChange} />
-      <Books yearFiltered={yearFiltered} books={books} />
+      <Books yearFiltered={yearFiltered} books={books} /> */}
+      <Login />
     </div>
   );
 };
