@@ -1,13 +1,16 @@
 import { useRef, useState } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router";
 
-const Login = () => {
+const Login = ({ loginHandler }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const changeEmailHandler = (event) => {
     if (event.target.value === "") {
@@ -47,7 +50,8 @@ const Login = () => {
       return;
     }
 
-    alert(`Su email es ${email} y su password es: ${password}`);
+    loginHandler();
+    navigate("/home");
   };
 
   return (

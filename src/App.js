@@ -1,65 +1,44 @@
-import { useState } from "react";
-import "./App.css";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
-import NewBook from "./components/NewBook/NewBook";
-import Books from "./components/books/Books";
-import BooksFilter from "./components/bookFilter/BookFilter";
+import "./App.css";
+import Dashboard from "./components/dashboard/Dashboard";
 
 import Login from "./components/login/Login";
-
-const BOOKS = [
-  {
-    id: 1,
-    title: "100 años de soledad",
-    author: "Gabriel García Marquez",
-    dateRead: new Date(2021, 8, 12),
-    pageCount: 410,
-  },
-  {
-    id: 2,
-    title: "Todos los fuegos el fuego",
-    author: "Julio Cortazar",
-    dateRead: new Date(2020, 6, 11),
-    pageCount: 197,
-  },
-  {
-    id: 3,
-    title: "Asesinato en el Orient Express",
-    author: "Agatha Christie",
-    dateRead: new Date(2021, 5, 9),
-    pageCount: 256,
-  },
-  {
-    id: 4,
-    title: "Las dos torres",
-    author: "J.R.R Tolkien",
-    dateRead: new Date(2020, 3, 22),
-    pageCount: 352,
-  },
-];
+import Protected from "./components/security/protected/Protected";
+import { useState } from "react";
+import PageNotFound from "./components/security/pageNotFound/PageNotFound";
 
 const App = () => {
-  const [books, setBooks] = useState(BOOKS);
-  const [yearFiltered, setYearFiltered] = useState("2023");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const addBookHandler = (book) => {
-    setBooks([book, ...books]);
+  const loginHandler = () => {
+    setIsLoggedIn(true);
   };
+  const router = createBrowserRouter([
+    { path: "/", element: <Navigate to="/login" /> },
+    {
+      path: "/login",
+      element: <Login loginHandler={loginHandler} />,
+    },
+    {
+      path: "/home",
+      element: (
+        <Protected isSignedIn={isLoggedIn}>
+          <Dashboard />
+        </Protected>
+      ),
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
+    },
+  ]);
 
-  const handleFilterChange = (year) => {
-    setYearFiltered(year);
-  };
-
-  return (
-    <div>
-      {/* <h1>Books Champion App!</h1>
-      <h3>¡Quiero leer libros!</h3>
-      <NewBook onBookAdded={addBookHandler} />
-      <BooksFilter yearFiltered={yearFiltered} onYearChange={handleFilterChange} />
-      <Books yearFiltered={yearFiltered} books={books} /> */}
-      <Login />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
