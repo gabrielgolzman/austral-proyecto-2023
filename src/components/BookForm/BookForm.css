@@ -25,3 +25,15 @@
   width: 20rem;
   max-width: 100%;
 }
+
+button:disabled {
+  background-color: #72728d;
+  border-color: #72728d;
+  cursor: unset;
+  color: black;
+}
+
+button:disabled:hover {
+  background-color: #72728d;
+  border-color: #72728d;
+}
