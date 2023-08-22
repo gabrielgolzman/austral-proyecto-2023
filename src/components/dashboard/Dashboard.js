@@ -7,6 +7,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import ToggleTheme from "../toggleTheme/ToggleTheme";
+import { APIContext } from "../../services/api/api.context";
 // const BOOKS = [
 //   {
 //     id: 1,
@@ -43,12 +44,14 @@ const Dashboard = () => {
   const [yearFiltered, setYearFiltered] = useState("2023");
 
   const { handleLogout, user } = useContext(AuthenticationContext);
+  const { toggleLoading } = useContext(APIContext);
 
   const navigate = useNavigate();
 
   const username = user?.email.split("@")[0];
 
   useEffect(() => {
+    toggleLoading(true);
     fetch("https://63a44a012a73744b0072f847.mockapi.io/api/books/Books", {
       headers: {
         Accept: "application/json",
@@ -56,13 +59,17 @@ const Dashboard = () => {
     })
       .then((response) => response.json())
       .then((bookData) => {
+        toggleLoading(false);
         const booksMapped = bookData.map((book) => ({
           ...book,
           dateRead: new Date(book.dateRead),
         }));
         setBooks(booksMapped);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toggleLoading(false);
+        console.log(error);
+      });
   }, []);
 
   const addBookHandler = (book) => {

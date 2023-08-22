@@ -3,9 +3,12 @@ import { useContext, useRef, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import ToggleTheme from "../toggleTheme/ToggleTheme";
+import { ThemeContext } from "../../services/theme/theme.context";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthenticationContext);
+  const { theme } = useContext(ThemeContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,7 +63,9 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="login-box">
+      <div
+        className={theme === "dark" ? "login-box login-box-dark" : "login-box"}
+      >
         <h4>¡Bienvenidos a Book Champions!</h4>
         <div className="input-container">
           <input
@@ -87,6 +92,7 @@ const Login = () => {
         <button className="signin-button" type="button" onClick={signInHandler}>
           Iniciar sesión
         </button>
+        <ToggleTheme />
       </div>
     </div>
   );
