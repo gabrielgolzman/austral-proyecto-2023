@@ -1,8 +1,12 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+
 import "./Login.css";
 import { useNavigate } from "react-router";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-const Login = ({ loginHandler }) => {
+const Login = () => {
+  const { handleLogin } = useContext(AuthenticationContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
@@ -50,7 +54,7 @@ const Login = ({ loginHandler }) => {
       return;
     }
 
-    loginHandler();
+    handleLogin(email);
     navigate("/home");
   };
 

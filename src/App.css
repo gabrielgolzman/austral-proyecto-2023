@@ -3,3 +3,9 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.dark-theme {
+  background-color: #020c1a;
+  color: white;
+  height: 100vh;
+}

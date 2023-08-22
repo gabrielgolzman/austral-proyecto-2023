@@ -39,3 +39,7 @@
   padding: 10px;
   cursor: pointer;
 }
+
+.login-box-dark {
+  border: 1px solid white;
+}

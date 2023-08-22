@@ -9,25 +9,23 @@ import Dashboard from "./components/dashboard/Dashboard";
 
 import Login from "./components/login/Login";
 import Protected from "./components/security/protected/Protected";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PageNotFound from "./components/security/pageNotFound/PageNotFound";
+import { ThemeContext } from "./services/theme/theme.context";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
-  const loginHandler = () => {
-    setIsLoggedIn(true);
-  };
   const router = createBrowserRouter([
     { path: "/", element: <Navigate to="/login" /> },
     {
       path: "/login",
-      element: <Login loginHandler={loginHandler} />,
+      element: <Login />,
     },
     {
       path: "/home",
       element: (
-        <Protected isSignedIn={isLoggedIn}>
+        <Protected>
           <Dashboard />
         </Protected>
       ),
@@ -38,7 +36,11 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div className={theme === "dark" && "dark-theme"}>
+      <RouterProvider router={router} />
+    </div>
+  );
 };
 
 export default App;
