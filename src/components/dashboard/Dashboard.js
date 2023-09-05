@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import NewBook from "../NewBook/NewBook";
 import BooksFilter from "../bookFilter/BookFilter";
@@ -72,7 +72,7 @@ const Dashboard = () => {
       });
   }, []);
 
-  const addBookHandler = (book) => {
+  const addBookHandler = useCallback((book) => {
     const dateString = book.dateRead.toISOString().slice(0, 10);
 
     fetch("https://63a44a012a73744b0072f847.mockapi.io/api/books/Books", {
@@ -102,7 +102,7 @@ const Dashboard = () => {
     // const newBooksData = [book, ...books];
     // setBooks(newBooksData);
     // localStorage.setItem("books", JSON.stringify(newBooksData));
-  };
+  },[books]);
 
   const handleFilterChange = (year) => {
     setYearFiltered(year);

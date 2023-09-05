@@ -1,6 +1,9 @@
+import { memo } from "react";
+
 import BookItem from "../bookItem/BookItem";
 
-const Books = ({ books, yearFiltered }) => {
+const Books = memo(({ books, yearFiltered }) => {
+  console.log("In Books!")
   const booksMapped =
     yearFiltered === ""
       ? books.map((book) => (
@@ -35,6 +38,6 @@ const Books = ({ books, yearFiltered }) => {
       )}
     </div>
   );
-};
+});
 
 export default Books;

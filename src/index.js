@@ -7,9 +7,7 @@ import WrapperProvider from "./services/WrapperProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
     <WrapperProvider>
       <App />
     </WrapperProvider>
-  </React.StrictMode>
 );

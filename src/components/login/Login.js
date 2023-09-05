@@ -5,10 +5,14 @@ import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import ToggleTheme from "../toggleTheme/ToggleTheme";
 import { ThemeContext } from "../../services/theme/theme.context";
+import useWindowSize from "../../custom/useWindowSize";
+import ComboLanguage from "../ui/comboLanguage/ComboLanguage";
+import useTranslate from "../../custom/useTranslate";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthenticationContext);
   const { theme } = useContext(ThemeContext);
+  const translate = useTranslate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,7 +70,8 @@ const Login = () => {
       <div
         className={theme === "dark" ? "login-box login-box-dark" : "login-box"}
       >
-        <h4>¡Bienvenidos a Book Champions!</h4>
+        <ComboLanguage />
+        <h4>{translate("welcome")}</h4>
         <div className="input-container">
           <input
             className="input-control"
@@ -81,7 +86,7 @@ const Login = () => {
         <div className="input-container">
           <input
             className="input-control"
-            placeholder="Password"
+            placeholder={translate("password")}
             type="password"
             ref={passwordRef}
             value={password}
@@ -90,7 +95,7 @@ const Login = () => {
         </div>
         {register && password === "" && <p>Password está vacío</p>}
         <button className="signin-button" type="button" onClick={signInHandler}>
-          Iniciar sesión
+          {translate("login")}
         </button>
         <ToggleTheme />
       </div>
